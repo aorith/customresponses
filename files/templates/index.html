@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Custom Responses{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<section class="flex_layout">
+    <p>
+        A simple PoC that creates and serves custom responses.
+    </p>
+    <p>
+        Components:
+    </p>
+    <p>
+        <ul>
+            <li>Fastapi</li>
+            <li>pydantic</li>
+            <li>Redis as the only DB</li>
+            <li>Some JS</li>
+        </ul>
+    </p>
+</section>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+<div class="form-group row">
+    <label for="alias" class="col-sm-2 col-form-label">Alias</label>
+    <div class="col-sm-10">
+        <input type="text" id="alias" class="form-control" value="{% if alias %}{{alias}}{% endif %}" maxlength="{{ settings.ALIAS_MAXLEN }}" required></input>
+        <div class="fdesc">
+            <p>An alias or name.</p>
+        </div>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="status_code" class="col-sm-2 col-form-label">Status code</label>
+    <div class="col-sm-10">
+        <input type="number" id="status_code" class="form-control" min="{{ settings.STATUS_CODE_MIN }}" max="{{ settings.STATUS_CODE_MAX }}" value="{% if status_code %}{{status_code}}{% else %}{{ settings.STATUS_CODE_DEFAULT }}{% endif %}" required></input>
+        <div class="fdesc">
+            <p">The HTTP status code of the response.</p>
+        </div>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="ctype" class="col-sm-2 col-form-label">Content-Type</label>
+    <div class="col-sm-10">
+        <input type="text" id="ctype" value="{% if ctype %}{{ctype}}{% else %}{{ settings.CTYPE_DEFAULT }}{% endif %}" class="form-control" maxlength="{{ settings.CTYPE_MAXLEN }}" required></input>
+        <div class="fdesc">
+            <p>MIME Type of the response which informs the browser how to display the content using the Content-Type header.</p>
+        </div>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="content" class="col-sm-2 col-form-label">Code</label>
+    <div class="col-sm-10">
+        <fieldset>
+            <textarea class="form-control" id="content" rows="10" cols="75" maxlength="{{ settings.CONTENT_MAXLEN }}" placeholder="Write the content here, it will be part of the response body" required>{% if content %}{{content}}{% endif %}</textarea>
+        </fieldset>
+    </div>
+</div>
