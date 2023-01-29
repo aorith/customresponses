@@ -32,13 +32,14 @@ async def modify_response(id: str, customResponse: schemas.CustomResponse):
             status_code=404, detail=f"Custom response with the id='{id}' not found."
         )
 
-    if crud.save_to_redis(key=id, data=dict(customResponse)):
+    try:
+        crud.save_to_redis(key=id, data=dict(customResponse))
         return customResponse
-
-    return HTTPException(
-        status_code=500,
-        detail="unknown error",
-    )
+    except Exception as err:
+        return HTTPException(
+            status_code=500,
+            detail=f"unknown error: {repr(err)}",
+        )
 
 
 @router.get(
