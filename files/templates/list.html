@@ -7,48 +7,50 @@
 
 {% endblock %}
 {% block content %}
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Alias</th>
-            <th>Status&nbsp;Code</th>
-            <th>MIME Type</th>
-            <th>Content</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for cr in custom_responses %}
-        <tr id="tr_{{ cr['id'] }}">
-            <td><a href="/v1/customresponse/{{ cr['id'] }}">{{ cr["id"] }}</a></td>
-            <td>{{ cr["alias"] }}</td>
-            <td>{{ cr["status_code"] }}</td>
-            <td>{{ cr["ctype"] }}</td>
-            <td><code class="pre-scrollable">{{ cr["content"] }}</code></td>
-            <td>
-                <div class="btn-group" role="group">
-                    <a role="button" class="btn btn-sm btn-outline-primary" href="/v1/customresponse/{{ cr['id'] }}/r">View</a>
-                    <a role="button" class="btn btn-sm btn-outline-primary" href="/modify/{{ cr['id'] }}">Edit</a>
-                    <button id="btn-delete" class="btn btn-sm btn-outline-danger" onclick="deleteResponse(this)" value="{{ cr['id'] }}">Delete</button>
-                </div>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Alias</th>
+                <th>Status&nbsp;Code</th>
+                <th>MIME Type</th>
+                <th>Content</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cr in custom_responses %}
+            <tr id="tr_{{ cr['id'] }}">
+                <td><a href="/v1/customresponse/{{ cr['id'] }}">{{ cr["id"] }}</a></td>
+                <td>{{ cr["alias"] }}</td>
+                <td>{{ cr["status_code"] }}</td>
+                <td>{{ cr["ctype"] }}</td>
+                <td><code class="pre-scrollable">{{ cr["content"] }}</code></td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a role="button" class="btn btn-sm btn-outline-primary" href="/v1/customresponse/{{ cr['id'] }}/r">View</a>
+                        <a role="button" class="btn btn-sm btn-outline-primary" href="/modify/{{ cr['id'] }}">Edit</a>
+                        <button id="btn-delete" class="btn btn-sm btn-outline-danger" onclick="deleteResponse(this)" value="{{ cr['id'] }}">Delete</button>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-{% if prev_cursor != -1 %}
-<a class="btn btn-primary" href="/list?cursor={{ prev_cursor }}&prev={{ click_prev }}" role="button">Previous</a>
-{% else %}
-<a class="btn btn-primary disabled" href="/list?cursor=0" role="button">Previous</a>
-{% endif %}
+    {% if prev_cursor != -1 %}
+    <a class="btn btn-primary" href="/list?cursor={{ prev_cursor }}&prev={{ click_prev }}" role="button">Previous</a>
+    {% else %}
+    <a class="btn btn-primary disabled" href="/list?cursor=0" role="button">Previous</a>
+    {% endif %}
 
-{% if new_cursor != 0 %}
-<a class="btn btn-primary" href="/list?cursor={{ new_cursor }}&prev={{ no_click_prev }}" role="button">Next</a>
-{% else %}
-<a class="btn btn-primary disabled" href="/list?cursor=0" role="button">Next</a>
-{% endif %}
+    {% if new_cursor != 0 %}
+    <a class="btn btn-primary" href="/list?cursor={{ new_cursor }}&prev={{ no_click_prev }}" role="button">Next</a>
+    {% else %}
+    <a class="btn btn-primary disabled" href="/list?cursor=0" role="button">Next</a>
+    {% endif %}
 
-&nbsp;<a class="btn btn-secondary" href="/list?cursor=0" role="button">Reset</a>
+    &nbsp;<a class="btn btn-secondary" href="/list?cursor=0" role="button">Reset</a>
+</div>
 {% endblock %}
