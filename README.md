@@ -14,7 +14,7 @@ Components:
 A demo instance is up (for the moment) here: [https://cr.iou.re/](https://cr.iou.re/)  
 the content resets periodically.  
 
-## Basic API usage
+## Basic API usage
 
 1. Create a new custom response:
 
